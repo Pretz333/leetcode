@@ -38,16 +38,16 @@ public class Solution {
             // equal to two, so intead of breaking the for loop and resetting the count (as it should), it instead
             // will go through the for loop again. This will result in the incorrect return of 8 instead of 15.
             int levelSize = queue.Count;
-            for(int i = 0; i < levelSize; i++) {
+            for(int i = 0; i < levelSize; i++) { // O(n)
                 // Grab the oldest item in the queue (leftmost item on the current level)
-                TreeNode currentNode = queue.Dequeue();
+                TreeNode currentNode = queue.Dequeue(); // O(1)
 
                 // Add the currentNode's value to the level sum
                 sum += currentNode.val;
                 
                 // If the current node has children nodes, add them to the queue for the next pass.
-                if(currentNode.left != null) queue.Enqueue(currentNode.left);
-                if(currentNode.right != null) queue.Enqueue(currentNode.right);
+                if(currentNode.left != null) queue.Enqueue(currentNode.left); // O(1)
+                if(currentNode.right != null) queue.Enqueue(currentNode.right); // O(1)
             }
         }
         

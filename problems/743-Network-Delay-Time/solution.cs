@@ -42,6 +42,8 @@ public class Solution {
         int nodeTime, destNode;
         
         // Loop until we've run out of paths to check
+        // We'll use Dijkstra's Algorithm, which has a time complexity of O(n^2) (this is the number of connections nodes can have), 
+        // but with our minimum priority queue (minHeap), it drops to O(n + edges * log(n))
         while(minHeap.Count > 0) {
             // Get the fastest path out of the queue for comparison.
             minHeap.TryDequeue(out destNode, out nodeTime);
