@@ -43,9 +43,13 @@ public class Solution {
         // Loop until we've either found the final cell (we'll see that exit later)
         // or until we've run out of cells to check.
         while(queue.Count > 0) {
-            // Get the oldest cell in the queue, as this will complete a breadth-first search, 
-            // meaning that we can be sure we've checked all possible paths for a shorter path
-            // by the time we reach the ending (bottom-right) cell.
+            // Get the oldest cell in the queue, as this will complete a breadth-first 
+            // search, meaning that we can be sure we've checked all possible paths
+            // for a shorter path by the time we reach the ending (bottom-right) cell.
+
+            // A breadth-first search is, in the worst case, O(n^2), as we would be adding every
+            // cell to the queue and checking all 8 cells around every cell. Otherwise, each time it
+            // runs it's only doing O(8 * valid traversable cells), which is not really useful to know.
             int[] cell = queue.Dequeue();
 
             // As stated above, we are storing [steps taken, x coordinate, y coordinate] in the queue
