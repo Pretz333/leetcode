@@ -25,26 +25,19 @@ public class Solution {
         int l1Value, l2Value, currentSum, carry = 0;
         
         // Step through the lists until we run out of values in both lists
-        while(l1 != null || l2 != null)
-        {
+        while(l1 != null || l2 != null) {
             // Grab the values of the current ListNode from each list and advance to the next value
             // If the current value is null (we reached the end of the list), set that value to 0
-            if(l1 == null)
-            {
+            if(l1 == null) {
                 l1Value = 0;
-            }
-            else
-            {
+            } else {
                 l1Value = l1.val;
                 l1 = l1.next;
             }
 
-            if(l2 == null)
-            {
+            if(l2 == null) {
                 l2Value = 0;
-            }
-            else
-            {
+            } else {
                 l2Value = l2.val;
                 l2 = l2.next;
             }
@@ -62,10 +55,7 @@ public class Solution {
             l3 = l3.next;
         }
         
-        if(carry > 0)
-        {
-            l3.next = new ListNode(1);
-        }
+        if(carry > 0) l3.next = new ListNode(1);
         
         return startNode.next;
     }

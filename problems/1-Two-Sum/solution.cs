@@ -46,15 +46,13 @@ public class Solution {
         map.Add(nums[0], 0);
         
         // Start at 1 to skip the first element
-        for(int i=1; i < nums.Length; i++) // an O(n) operation
-        {
+        for(int i=1; i < nums.Length; i++) { // an O(n) operation
             // What number are we looking for?
             diff = target - nums[i];
             
             // As mentioned before, we're looking at the key instead of the value
             // as we put in the array values into the key of the Dictionary
-            if(map.ContainsKey(diff)) // an O(n) operation
-            {
+            if(map.ContainsKey(diff)) { // an O(n) operation
                 result[0] = i;
                 result[1] = map[diff]; // diff is the array value, but we need the index
                 return result;
@@ -62,13 +60,10 @@ public class Solution {
             
             // A try-catch block is needed here as a Dictionary will throw an ArgumentException 
             // if you try to add a second element with the same key.
-            try
-            {
+            try {
                 // map.Add(array value, index of said value);
                 map.Add(nums[i], i);
-            }
-            catch (ArgumentException)
-            {
+            } catch (ArgumentException) {
                 Console.WriteLine("An element with key \"" + i + "\" already exists.");
             }
         }
