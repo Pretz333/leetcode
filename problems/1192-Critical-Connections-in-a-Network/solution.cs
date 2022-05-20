@@ -1,7 +1,7 @@
 public class Solution {
     // We're going to implement Tarjan's Algorithm, which has a time complexity of O(connections + nodes).
     // I learned of this algorithm and how to implement it here: https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm
-    // Due to the fact that it a depth-first search (DFS), we're going to implement a recursive solution.
+    // Due to the fact that it uses a depth-first search (DFS), we're going to implement a recursive solution.
     // This means we'll either need to make the variables class-wide or we'll need to pass them into every time
     // we call the method. I took the lazy (and easier to debug, in my opinion) approach of making them class-wide.
 
@@ -75,12 +75,12 @@ public class Solution {
                 // Take a look at the neighbor
                 DFS(neighbor, node);
 
-                // Check if the neighbor can reach the higher up the tree than this node can. 
-                // If so, set this node to be able to reach the highest node the neighbor can.
+                // Check if the neighbor can get closer to the source than this node can. 
+                // If so, set this node to be able to reach the closest node the neighbor can.
                 low[node] = Math.Min(low[node], low[neighbor]);
 
-                // If the neighbor can reach higher up the tree faster than we can get to this node, 
-                // the connection between node and neighbor is the "critical connection".
+                // If the neighbor can reach the source of our search before we can get to this
+                // node, the connection between node and neighbor is the "critical connection".
                 if(low[neighbor] > discovered[node]) result.Add(new List<int>{node, neighbor});
             } else {
                 // If the neighbor is already visited, then the connection between the node and neighbor is a back-edge in the DFS tree.
