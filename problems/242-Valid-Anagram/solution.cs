@@ -14,8 +14,8 @@ public class Solution {
         // For each character in one of the strings (s, in this case), remove that character 
         // from the other string's (t, in this case) remaining character list.
         // If it cannot be removed, that means that one of the strings (s) had an extra character.
-        foreach(char c in sChars) {
-            if(!tChars.Remove(c)) return false;
+        foreach(char c in sChars) { // O(n)
+            if(!tChars.Remove(c)) return false; // The removal is slow compared to HashSet's or a Dictionary's
         }
         
         // Return if the other string's list is empty. It being empty would mean that s and t had the
