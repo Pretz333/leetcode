@@ -13,12 +13,12 @@ public class Solution {
             // If the widths are equal, sort the item with the bigger height as smaller.
             if(x[0] - y[0] == 0) {
               return y[1] - x[1];
+            } else {
+                // Otherwise, sort the item with the smaller width as smaller. 
+                // For example, if x[0] = 4 and y[0] = 1, this will return 3, which says that x is bigger than y. 
+                // If x[0] = 1 and y[0] = 4, this will return -3, which says that y is bigger than x.
+                return x[0] - y[0];
             }
-
-            // Otherwise, sort the item with the smaller width as smaller. 
-            // For example, if x[0] = 4 and y[0] = 1, this will return 3, which says that x is bigger than y. 
-            // If x[0] = 1 and y[0] = 4, this will return -3, which says that y is bigger than x.
-            return x[0] - y[0];
         }); // O(log n), according to the C# documentation
         
         // Cache how many envelopes we have so we don't ask for it for every element in the array.
