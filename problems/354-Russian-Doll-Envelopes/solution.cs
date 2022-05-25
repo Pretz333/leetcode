@@ -1,16 +1,25 @@
 public class Solution {
     public int MaxEnvelopes(int[][] envelopes) {
-        // To solve this, we're going to do a few things. First, we're going to sort the array on the width (envelopes[][0]). 
+        // First, we're going to sort the array on the width (envelopes[][0]). 
         // If the width is equal, we're going to put the larger height (envelopes[][1]) item first. 
         // By putting the larger height items first, we can ensure we always end with the smallest
-        // height envelope of that width when we move onto the next width.
+        // height envelope of that width before we move onto the next width.
 
-        // Instantiate a sorter, which is defined below. It essentially allows Array.Sort() to
-        // understand when an envelope is bigger than another following the rules mentioned above.
-        Sorter sorter = new Sorter();
+        // The second parameter is a method that essentially allows Array.Sort() to understand when
+        // one envelope is bigger than another following the rules mentioned above. If the method 
+        // returns a negative number, the first object is smaller. If it returns a positive number, 
+        // the first object is larger. If it returns a 0, the two objects are treated as equal.
+        Array.Sort(envelopes, (x, y) => {
+            // If the widths are equal, sort the item with the bigger height as smaller.
+            if(x[0] - y[0] == 0) {
+              return y[1] - x[1];
+            }
 
-        // Actually sort the envelopes.
-        Array.Sort(envelopes, sorter); // O(log n), according to the C# documentation
+            // Otherwise, sort the item with the smaller width as smaller. 
+            // For example, if x[0] = 4 and y[0] = 1, this will return 3, which says that x is bigger than y. 
+            // If x[0] = 1 and y[0] = 4, this will return -3, which says that y is bigger than x.
+            return x[0] - y[0];
+        }); // O(log n), according to the C# documentation
         
         // Cache how many envelopes we have so we don't ask for it for every element in the array.
         int n = envelopes.Length;
@@ -64,29 +73,5 @@ public class Solution {
         }
         
         return result;
-    }
-    
-    // I couldn't find a way to declare our sorter in-line like is possible with Java, JS, and Python
-    // (as well as languages I don't know), so I made a class that implements IComparer to compare envelopes.
-    // C# comparers work by passing in two objects. If the method returns a negative number, the first
-    // object is smaller. If it returns a positive number, the first object is larger. If it returns a 0, 
-    // the two objects are treated as equal in value.
-    class Sorter : IComparer {
-        // It requires that the objects passed in are declared as Objects, much to my dismay.
-        int IComparer.Compare(Object ox, Object oy)  {
-            // Convert the Objects to int[], as that's what they are
-            int[] x = ox as int[];
-            int[] y = oy as int[];
-
-            // If the widths are equal, sort the item with the bigger height as smaller.
-            if(x[0] - y[0] == 0) {
-              return y[1] - x[1];
-            }
-
-            // Else, sort the item with the smaller width as smaller. 
-            // For example, x[0] = 4 and y[0] = 1, this will return 3, which says that x is bigger than y. 
-            // If x[0] = 1 and y[0] = 4, this will return -3, which says that y is bigger than x.
-            return x[0] - y[0];
-        }
     }
 }
