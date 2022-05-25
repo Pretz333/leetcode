@@ -52,7 +52,7 @@ public class Solution {
             
             // As mentioned before, we're looking at the key instead of the value
             // as we put in the array values into the key of the Dictionary
-            if(map.ContainsKey(diff)) { // an O(n) operation
+            if(map.ContainsKey(diff)) { // "approaches an O(1) operation"
                 result[0] = i;
                 result[1] = map[diff]; // diff is the array value, but we need the index
                 return result;
