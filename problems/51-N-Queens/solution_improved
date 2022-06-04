@@ -55,6 +55,7 @@ public class Solution {
                     board[rowNum][colNum] = 'Q';
                     
                     // Recurse on the next row.
+                    SolveNQueens(rowNum + 1);
                     
                     // If we get here, we've backtracked. We need to remove the queen from this position, 
                     // which means we need to mark the column, positive diagonal, and negative diagonal as free.
