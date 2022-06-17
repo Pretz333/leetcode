@@ -1,7 +1,7 @@
 public class Solution {
     public int LongestStrChain(string[] words) {
         // Sort the array by length
-        Array.Sort(words); // O(nlogn)
+        Array.Sort(words, (a, b) => a.Length - b.Length); // O(nlogn)
         
         // Create a dictionary to store the longest chain for each word
         Dictionary<string, int> wordMap = new Dictionary<string, int>();
@@ -14,8 +14,9 @@ public class Solution {
         
         // Loop through the array
         foreach(string word in words) { // O(n)
-            // Add the word to the dictionary with a value of 1, as this is it's first appearance
-            wordMap.Add(word, 1);
+            // Add the word to the dictionary with a value of 1, as this is it's first appearance.
+            // We use TryAdd in case the source array has duplicate words, which would cause an error.
+            wordMap.TryAdd(word, 1);
             
             // Remove each character from the word and check if it's in the dictionary.
             for(int i=0; i<word.Length; i++) { // O(n)
