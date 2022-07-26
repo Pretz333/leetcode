@@ -11,14 +11,13 @@ public class Solution {
 		int a = 0, b = 1;
 		
         // Iterate through the remaining n - 2 numbers
-		while(n > 1) {
+		for(int i = n; i > 1; i--) {
             // Calculate the sum of the last two numbers. Note that we 
             // cannot store the sum directly into b as we need to keep
             // track of both the sum and the second largest number.
 			int sum = a + b;
 			a = b; // store the larger number in a
 			b = sum; // store the sum in b
-            n--; // decrement n, which keeps track of how much further we must go
 		}
         
         // Return the result of the sum of the last two numbers
