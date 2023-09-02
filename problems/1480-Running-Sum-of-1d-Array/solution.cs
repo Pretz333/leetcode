@@ -4,7 +4,6 @@ public class Solution {
         // add the previous element. We start at the second element
         // as the first element will always be itself.
         for(int i = 1; i < nums.Length; i++) { // O(n)
-            // += is shorthand for nums[i] += nums[i - 1].
             nums[i] += nums[i-1];
         }
         
